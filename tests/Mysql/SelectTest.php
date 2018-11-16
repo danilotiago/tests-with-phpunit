@@ -15,4 +15,19 @@ class SelectTest extends TestCase
 
         $this->assertEquals($expected, $select->getSql());
     }
+
+    public function testSelectComCampos()
+    {
+        $campos = [
+            'name',
+            'email'
+        ];
+        $expected = "SELECT name, email FROM users;";
+
+        $select = new Select();
+        $select->setTable('users');
+        $select->setFields($campos);
+
+        $this->assertEquals($expected, $select->getSql());
+    }
 }
