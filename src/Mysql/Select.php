@@ -6,6 +6,7 @@ class Select
 {
     private $table;
     private $fields;
+    private $filters;
 
     /**
      * @param string $name
@@ -24,13 +25,25 @@ class Select
     }
 
     /**
+     * @param Filter $filter
+     */
+    public function setFilter(Filter $filter): void
+    {
+        $this->filters = $filter->getSql();
+    }
+
+    /**
      * @return string
      */
     public function getSql(): string
     {
         $fields = $this->returnFieldsInString();
-        $query = "SELECT {$fields} FROM {$this->table};";
-        return $query;
+        $query = "SELECT {$fields} FROM {$this->table}";
+
+        if(!empty($this->filters)) {
+            $query .= " $this->filters";
+        }
+        return $query . ";";
     }
 
     /**

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Mysql;
+namespace App\Unit\Mysql;
 
 use PHPUnit\Framework\TestCase;
+use App\Mysql\Select;
 
 class SelectTest extends TestCase
 {
